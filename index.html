@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutor and Facilitator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#111111;
+    --amber:#D4A72C;
+    --pink:#111111;
+    --teal:#8A6A12;
+    --lilac:#F4F1EA;
+    --paper:#FFFFFF;
+    --white:#FFFFFF;
+    --head:'Fredoka', system-ui, sans-serif;
+    --body:'Nunito', system-ui, sans-serif;
+    --hand:'Caveat', cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--purple);background:var(--paper);line-height:1.65;font-size:17px;overflow-x:hidden}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:var(--head);font-weight:700;line-height:1.08}
+
+  .btn{display:inline-block;background:var(--pink);color:var(--white);text-decoration:none;font-weight:800;padding:14px 28px;border:3px solid var(--purple);border-radius:999px;box-shadow:5px 5px 0 var(--amber);cursor:pointer;font-family:var(--body);font-size:1rem;transition:transform .15s, box-shadow .15s}
+  .btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--amber)}
+  .btn.alt{background:var(--amber);color:var(--purple);box-shadow:5px 5px 0 var(--purple)}.btn.alt:hover{box-shadow:3px 3px 0 var(--purple)}
+
+  .bar{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:3px solid var(--purple)}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{font-family:var(--head);font-size:1.25rem;text-decoration:none}
+  .bar .btn{padding:8px 20px;box-shadow:3px 3px 0 var(--amber);font-size:.95rem}
+
+  /* hero */
+  .hero{padding:50px 0 70px;position:relative}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+  .hand{font-family:var(--hand);font-size:2rem;color:var(--pink);transform:rotate(-3deg);display:inline-block;margin-bottom:4px}
+  .hero h1{font-size:clamp(2.6rem,7.5vw,4.8rem);margin-bottom:10px}
+  .role{display:inline-block;background:var(--purple);color:var(--white);font-family:var(--head);font-size:1.15rem;padding:6px 20px;border-radius:10px;transform:rotate(-1.5deg);margin-bottom:18px}
+  .hero p.lead{font-size:1.2rem;font-weight:600;max-width:34ch;margin-bottom:8px}
+  .tri{font-family:var(--hand);font-size:1.9rem;color:var(--teal);margin-bottom:26px}
+  .btns{display:flex;gap:14px;flex-wrap:wrap}
+
+  .portrait{position:relative;max-width:390px;margin:0 auto;width:100%}
+  .oval{aspect-ratio:4/5;border-radius:50%;border:7px solid var(--purple);background:var(--lilac);overflow:hidden;display:grid;place-items:center;box-shadow:12px 12px 0 var(--amber);position:relative;z-index:1}
+  .oval img{width:100%;height:100%;object-fit:cover}
+  .oval .ph{text-align:center;font-weight:800;padding:20px}
+  .oval .ph svg{width:44%;margin:0 auto 8px;display:block}
+  .deco{position:absolute;z-index:2}
+  .cap{width:96px;top:-26px;left:-24px;animation:bob 4s ease-in-out infinite}
+  .bulb{width:60px;top:-18px;right:6px;animation:bob 5s ease-in-out infinite .6s}
+  .pencil{width:70px;bottom:20px;right:-26px;transform:rotate(25deg);animation:bob 6s ease-in-out infinite 1s}
+  .star{width:44px;bottom:50px;left:-18px;animation:bob 4.5s ease-in-out infinite .3s}
+  .dots{position:absolute;inset:-14px;z-index:0;width:calc(100% + 28px);height:calc(100% + 28px);pointer-events:none}
+  @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+
+  /* strip */
+  .strip{background:var(--amber);border-top:3px solid var(--purple);border-bottom:3px solid var(--purple);padding:16px 0;text-align:center;font-family:var(--head);font-size:1.2rem}
+
+  section.block{padding:76px 0}
+  section.block h2{font-size:clamp(2rem,5.5vw,3.1rem);margin-bottom:12px}
+  .sub{margin-bottom:38px;max-width:52ch;font-weight:600}
+
+  /* offers */
+  .offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px}
+  .offer{background:var(--white);border:3px solid var(--purple);border-radius:22px;padding:26px;box-shadow:6px 6px 0 var(--purple);transition:transform .2s}
+  .offer:hover{transform:translateY(-4px) rotate(-1deg)}
+  .ico{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;border:3px solid var(--purple);margin-bottom:14px}
+  .ico svg{width:36px;height:36px}
+  .offer h3{font-size:1.3rem;margin-bottom:6px}
+
+  .modes{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+  .modes span{background:var(--amber);border:3px solid var(--purple);border-radius:999px;padding:4px 16px;font-weight:800;font-size:.9rem}
+  .formats{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+
+  /* stairs */
+  .stairs-sec{background:var(--lilac);border-top:3px solid var(--purple);border-bottom:3px solid var(--purple)}
+  .stairs-scroll{overflow-x:auto;padding:30px 4px 10px}
+  .stairs{display:flex;align-items:flex-end;gap:8px;min-width:720px;position:relative}
+  .step{flex:1;border:3px solid var(--purple);border-bottom:none;border-radius:14px 14px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:12px;font-family:var(--head);font-size:.95rem;text-align:center;color:var(--purple);position:relative}
+  .step:nth-child(4n+1){background:var(--amber)}
+  .step:nth-child(4n+2){background:var(--white)}
+  .step:nth-child(4n+3){background:var(--pink);color:var(--white)}
+  .step:nth-child(4n){background:var(--teal);color:var(--white)}
+  .step .topcap{position:absolute;width:56px;left:50%;margin-left:-28px;top:-48px}
+  .ground{border-top:5px solid var(--purple)}
+
+  /* about */
+  .about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+  .note{background:var(--amber);border:3px solid var(--purple);border-radius:18px;padding:28px;box-shadow:7px 7px 0 var(--purple);transform:rotate(-2deg);font-family:var(--hand);font-size:1.7rem;line-height:1.3}
+  .about p{margin-bottom:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .chips span{background:var(--white);border:3px solid var(--purple);border-radius:999px;padding:5px 16px;font-weight:800;font-size:.95rem}
+  .chips span:nth-child(3n+1){background:var(--lilac)}
+  .chips span:nth-child(3n+2){background:var(--amber)}
+
+  /* voices + moments (hidden when empty) */
+  .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+  .quote{background:var(--white);border:3px solid var(--purple);border-radius:20px;padding:24px;box-shadow:5px 5px 0 var(--teal)}
+  .quote strong{display:block;margin-top:10px;font-family:var(--head)}
+  .moments{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .moments img{width:100%;aspect-ratio:1;object-fit:cover;border:3px solid var(--purple);border-radius:20px;box-shadow:5px 5px 0 var(--purple)}
+
+  /* book */
+  .book{background:var(--purple);color:var(--white)}
+  .book h2{color:var(--amber)}
+  .book .grid2{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .panel{background:var(--paper);color:var(--purple);border:3px solid var(--amber);border-radius:22px;padding:26px;display:grid;gap:14px}
+  label{font-weight:800;font-size:.95rem;display:grid;gap:5px}
+  input,select{font:inherit;color:var(--purple);padding:12px;border:3px solid var(--purple);border-radius:12px;background:var(--white);width:100%}
+  .contact p{margin-bottom:10px;font-weight:600}
+  .contact a{color:var(--amber)}
+  .contact .btn{margin-top:10px}
+
+  footer{background:var(--paper);border-top:3px solid var(--purple);padding:24px 0;text-align:center;font-size:.95rem}
+  footer a{color:var(--pink);font-weight:800}
+  .wa{position:fixed;right:18px;bottom:18px;z-index:20;background:var(--amber);color:var(--purple);border:3px solid var(--purple);border-radius:999px;padding:12px 22px;font-weight:800;text-decoration:none;box-shadow:4px 4px 0 var(--purple)}
+
+  @media (max-width:760px){
+    .hero{padding:34px 0 56px}
+    .hero .wrap,.about .wrap,.book .grid2{grid-template-columns:1fr}
+    .portrait{max-width:300px;order:-1}
+    .moments{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top" id="logo"></a>
+    <a class="btn" id="barBook" href="#book">Book a lesson</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="hand" id="hello"></span>
+        <h1 id="heroName"></h1>
+        <span class="role" id="role"></span>
+        <p class="lead" id="lead"></p>
+        <p class="tri" id="triad"></p>
+        <div class="modes" id="modesRow"></div>
+        <div class="btns">
+          <a class="btn" href="#book">Book a lesson</a>
+          <a class="btn alt" href="#offer">What I offer</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <svg class="dots" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="50" cy="50" rx="49" ry="49" fill="none" stroke="#111111" stroke-width="0.7" stroke-dasharray="2 3" vector-effect="non-scaling-stroke"/></svg>
+        <div class="oval" id="oval"></div>
+        <svg class="deco cap" viewBox="0 0 100 70" aria-hidden="true"><path d="M50 4 L96 24 L50 44 L4 24Z" fill="#111111" stroke="#111111" stroke-width="3" stroke-linejoin="round"/><path d="M26 36 V54 C26 62 74 62 74 54 V36 L50 48Z" fill="#111111"/><path d="M90 28 V50" stroke="#D4A72C" stroke-width="4"/><circle cx="90" cy="54" r="5" fill="#D4A72C"/></svg>
+        <svg class="deco bulb" viewBox="0 0 60 80" aria-hidden="true"><path d="M30 6 C14 6 6 20 12 34 C16 42 20 44 20 52 H40 C40 44 44 42 48 34 C54 20 46 6 30 6Z" fill="#D4A72C" stroke="#111111" stroke-width="3" stroke-linejoin="round"/><rect x="21" y="56" width="18" height="8" rx="3" fill="#FFFFFF" stroke="#111111" stroke-width="3"/><rect x="24" y="66" width="12" height="6" rx="3" fill="#111111"/></svg>
+        <svg class="deco pencil" viewBox="0 0 90 30" aria-hidden="true"><rect x="2" y="4" width="62" height="22" fill="#111111" stroke="#111111" stroke-width="3"/><path d="M64 4 L88 15 L64 26Z" fill="#FFE2B0" stroke="#111111" stroke-width="3" stroke-linejoin="round"/><rect x="2" y="4" width="12" height="22" fill="#D4A72C" stroke="#111111" stroke-width="3"/></svg>
+        <svg class="deco star" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 3 C34 22 42 30 61 32 C42 34 34 42 32 61 C30 42 22 34 3 32 C22 30 30 22 32 3Z" fill="#8A6A12" stroke="#111111" stroke-width="3"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip" id="strip"></div>
+
+  <section class="block" id="offer">
+    <div class="wrap">
+      <h2>What I offer</h2>
+      <p class="sub">Simple, patient help that makes learning feel good.</p>
+      <div class="offers" id="offers"></div>
+    </div>
+  </section>
+
+  <section class="block" id="formatsSec">
+    <div class="wrap">
+      <h2>Learn your way</h2>
+      <p class="sub">Lessons that fit your family's week.</p>
+      <div class="formats" id="formatsGrid"></div>
+    </div>
+  </section>
+
+  <section class="block stairs-sec">
+    <div class="wrap">
+      <h2>Every step of the way</h2>
+      <p class="sub" id="stairsText"></p>
+      <div class="stairs-scroll"><div class="stairs" id="stairs"></div><div class="ground"></div></div>
+    </div>
+  </section>
+
+  <section class="block about">
+    <div class="wrap">
+      <div class="note" id="note"></div>
+      <div>
+        <h2>About me</h2>
+        <div id="aboutText"></div>
+        <div class="chips" id="subjects"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="voicesSec" hidden>
+    <div class="wrap">
+      <h2>What parents say</h2>
+      <div class="quotes" id="quotes"></div>
+    </div>
+  </section>
+
+  <section class="block" id="momentsSec" hidden style="padding-top:0">
+    <div class="wrap">
+      <h2>Learning moments</h2>
+      <div class="moments" id="moments"></div>
+    </div>
+  </section>
+
+  <section class="block book" id="book">
+    <div class="wrap">
+      <h2>Book a lesson</h2>
+      <p class="sub" style="color:var(--lilac)">Tell me about the learner. This opens WhatsApp with your message ready to send.</p>
+      <div class="grid2">
+        <form class="panel" id="form">
+          <label>Parent or guardian name<input name="parent" required autocomplete="name"></label>
+          <label>Learner's class<select name="grade" id="gradeSel"></select></label>
+          <label>Type of lesson<select name="mode" id="modeSel"></select></label>
+          <label>What do you need help with?<select name="need" id="needSel"></select></label>
+          <button class="btn" type="submit">Send on WhatsApp</button>
+        </form>
+        <div class="contact">
+          <h3 style="color:var(--amber);font-size:1.5rem;margin-bottom:12px">Say hello</h3>
+          <p id="phoneLine"></p>
+          <p id="emailLine" hidden></p>
+          <p id="areaLine"></p>
+          <a class="btn alt" id="waBtn" href="#">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Website by <a id="builder" href="#">JMG Tech Hub</a></footer>
+<a class="wa" id="floatWa" href="#">Chat on WhatsApp</a>
+
+<script>
+/* =====================================================
+   EDIT ONLY THIS BLOCK
+   ===================================================== */
+const ME = {
+  name: "Florence",
+  firstName: "Florence",
+  role: "Tutor and Facilitator",
+  lead: "Helping learners build confidence and excel every day.",
+  triad: "Dedicated. Patient. Passionate.",
+  photo: "images/me.jpg",                         // her portrait
+  phone: "0701 497350",
+  whatsapp: "254701497350",                    // country code, no + and no spaces
+  email: "",                                   // optional
+  area: "Add the areas you serve, or say 'online lessons available'",
+  strip: "I work with learners from Play Group to Grade 6",
+
+  offers: [
+    { title: "Academic Support", text: "All subjects and homework help.", color: "#D4A72C", icon: "book" },
+    { title: "Reading and Writing", text: "Phonics, comprehension and writing skills.", color: "#F0D98A", icon: "pencil" },
+    { title: "Maths Made Easy", text: "Concepts made simple and fun.", color: "#D9D9D9", icon: "calc" },
+    { title: "Confidence Building", text: "Encouraging every learner to believe in themselves.", color: "#EDEDED", icon: "smile" }
+  ],
+
+  grades: ["Play Group", "PP1", "PP2", "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6"],
+  stairsText: "From first letters in Play Group to confident readers and thinkers in Grade 6.",
+
+  note: "Every child can learn. They just need the right pace and someone who believes in them.",
+  about: [
+    "I am Florence, a tutor and facilitator who works with learners from Play Group to Grade 6. I help children build confidence and do well in reading, writing, maths and all their school subjects. My lessons are patient, simple and fun, so every child feels safe to ask questions and proud of their progress."
+  ],
+  subjects: ["Maths", "English", "Kiswahili", "Science", "Phonics", "Homework help", "Holiday classes"],
+
+  /* Optional. Leave empty and these sections stay hidden. Only add REAL parent comments. */
+  testimonials: [
+    // { text: "My son now loves reading.", who: "Parent, Grade 2" }
+  ],
+  moments: [
+    // "images/lesson1.jpg", "images/lesson2.jpg", "images/lesson3.jpg"
+  ],
+
+  /* LESSON TYPES: edit these to match how she really teaches */
+  formats: [
+    { title: "Online lessons", text: "Live lessons on a video call, from the comfort of your home. All you need is a phone, tablet or laptop and a steady connection.", color: "#D4A72C", icon: "laptop" },
+    { title: "In-person lessons", text: "Face to face lessons for learners who do best with a tutor beside them.", color: "#F0D98A", icon: "home" }
+  ],
+  modes: ["Online lesson", "In-person lesson", "Not sure yet"],
+
+  needs: ["Academic support (all subjects)", "Reading and writing", "Maths", "Confidence building", "Holiday classes", "Something else"],
+  builderWhatsapp: "254700000000"              // YOUR number, so the footer link brings you clients
+};
+/* ===================================================== */
+
+const $ = id => document.getElementById(id);
+const wa = msg => `https://wa.me/${ME.whatsapp}?text=${encodeURIComponent(msg)}`;
+
+document.title = `${ME.name} | ${ME.role}`;
+$("logo").textContent = ME.name;
+$("hello").textContent = "Hello, I'm";
+$("heroName").textContent = ME.name;
+$("role").textContent = ME.role;
+$("lead").textContent = ME.lead;
+$("triad").textContent = ME.triad;
+$("strip").textContent = ME.strip;
+$("note").textContent = ME.note;
+$("aboutText").innerHTML = ME.about.map(p => `<p>${p}</p>`).join("");
+$("subjects").innerHTML = ME.subjects.map(s => `<span>${s}</span>`).join("");
+$("stairsText").textContent = ME.stairsText;
+$("phoneLine").innerHTML = `Phone: <a href="tel:${ME.phone.replace(/\s/g,'')}">${ME.phone}</a>`;
+if (ME.email) { $("emailLine").innerHTML = `Email: <a href="mailto:${ME.email}">${ME.email}</a>`; $("emailLine").hidden = false; }
+$("areaLine").textContent = ME.area;
+$("waBtn").href = wa(`Hi ${ME.name}, I would like to ask about lessons.`);
+$("floatWa").href = wa(`Hi ${ME.name}, I would like to ask about lessons.`);
+$("builder").href = `https://wa.me/${ME.builderWhatsapp}?text=${encodeURIComponent("Hi, I saw " + ME.name + "'s website. I would like a website too.")}`;
+
+$("oval").innerHTML = ME.photo
+  ? `<img src="${ME.photo}" alt="${ME.name}">`
+  : `<div class="ph"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="28" r="16" fill="#D4A72C" stroke="#111111" stroke-width="3"/><path d="M10 74 C10 54 22 48 40 48 C58 48 70 54 70 74Z" fill="#8A6A12" stroke="#111111" stroke-width="3"/></svg>Add your photo</div>`;
+
+const icons = {
+  book:`<svg viewBox="0 0 36 36"><path d="M4 8 C10 6 15 7 18 10 C21 7 26 6 32 8 V28 C26 26 21 27 18 30 C15 27 10 26 4 28Z" fill="#fff" stroke="#111111" stroke-width="2.5" stroke-linejoin="round"/><path d="M18 10 V30" stroke="#111111" stroke-width="2.5"/></svg>`,
+  pencil:`<svg viewBox="0 0 36 36"><path d="M6 30 L8 22 L24 6 L30 12 L14 28Z" fill="#fff" stroke="#111111" stroke-width="2.5" stroke-linejoin="round"/><path d="M21 9 L27 15" stroke="#111111" stroke-width="2.5"/></svg>`,
+  calc:`<svg viewBox="0 0 36 36"><rect x="5" y="5" width="26" height="26" rx="5" fill="#fff" stroke="#111111" stroke-width="2.5"/><path d="M11 12 H17 M14 9 V15 M20 12 H26 M11 24 H17 M20 21 L26 27 M26 21 L20 27" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+  laptop:`<svg viewBox="0 0 36 36"><rect x="7" y="8" width="22" height="15" rx="2" fill="#fff" stroke="#111111" stroke-width="2.5"/><path d="M3 28 H33 L30 23 H6Z" fill="#fff" stroke="#111111" stroke-width="2.5" stroke-linejoin="round"/></svg>`,
+  home:`<svg viewBox="0 0 36 36"><path d="M4 18 L18 6 L32 18" fill="none" stroke="#111111" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><path d="M8 16 V30 H28 V16" fill="#fff" stroke="#111111" stroke-width="2.5" stroke-linejoin="round"/><rect x="15" y="21" width="6" height="9" fill="#111111"/></svg>`,
+  smile:`<svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="13" fill="#fff" stroke="#111111" stroke-width="2.5"/><circle cx="13" cy="15" r="2" fill="#111111"/><circle cx="23" cy="15" r="2" fill="#111111"/><path d="M11 21 C14 27 22 27 25 21" fill="none" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/></svg>`
+};
+$("offers").innerHTML = ME.offers.map(o => `<div class="offer"><div class="ico" style="background:${o.color}">${icons[o.icon]}</div><h3>${o.title}</h3><p>${o.text}</p></div>`).join("");
+
+const capSvg = `<svg class="topcap" viewBox="0 0 100 70" aria-hidden="true"><path d="M50 4 L96 24 L50 44 L4 24Z" fill="#111111"/><path d="M26 36 V54 C26 62 74 62 74 54 V36 L50 48Z" fill="#111111"/><circle cx="90" cy="54" r="5" fill="#D4A72C"/></svg>`;
+const last = ME.grades.length - 1;
+$("stairs").innerHTML = ME.grades.map((g, i) => `<div class="step" style="height:${70 + i*22}px">${i === last ? capSvg : ""}${g}</div>`).join("");
+
+$("formatsGrid").innerHTML = ME.formats.map(o => `<div class="offer"><div class="ico" style="background:${o.color}">${icons[o.icon]}</div><h3>${o.title}</h3><p>${o.text}</p></div>`).join("");
+$("modesRow").innerHTML = ME.formats.map(o => `<span>${o.title}</span>`).join("");
+$("modeSel").innerHTML = ME.modes.map(m => `<option>${m}</option>`).join("");
+$("gradeSel").innerHTML = ME.grades.map(g => `<option>${g}</option>`).join("");
+$("needSel").innerHTML = ME.needs.map(n => `<option>${n}</option>`).join("");
+$("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  window.open(wa(`Hello ${ME.firstName}, my name is ${f.get("parent")}. I am looking for lessons for a learner in ${f.get("grade")}.\nLesson type: ${f.get("mode")}\nHelp needed: ${f.get("need")}`), "_blank");
+});
+
+if (ME.testimonials.length) {
+  $("voicesSec").hidden = false;
+  $("quotes").innerHTML = ME.testimonials.map(t => `<div class="quote"><p>${t.text}</p><strong>${t.who}</strong></div>`).join("");
+}
+if (ME.moments.length) {
+  $("momentsSec").hidden = false;
+  $("moments").innerHTML = ME.moments.map((m, i) => `<img src="${m}" alt="Learning moment ${i+1}" loading="lazy">`).join("");
+}
+</script>
+</body>
+</html>
